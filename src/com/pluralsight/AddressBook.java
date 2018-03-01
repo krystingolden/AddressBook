@@ -103,30 +103,11 @@ public class AddressBook {
 
     public void displayContacts() {
         System.out.println();
-
-        for (int i = 0; i < 8; i++){
-            Object currentContact = contacts.get(i);
-
-        }
-
-        /*
-        //For each contact
-        for (int i = 0; i < contacts.size(); i++) {
-            //Store the pieces of information as divided by a ","
-            String[] contactInfo = ((contacts.get(i)).toString()).split(",");
-            int count = 0;
-            for (String info : contactInfo) {
-                if (count == 2) {
-                    System.out.println("(" + info.substring(0, 3) + ")" + info.substring(3, 6) + "-" + info.substring(6, 10));
-                } else {
-                    System.out.println(info);
-                }
-                count++;
-            }
+        for (int i = 0; i < contacts.size(); i++){
+            AddressBookContact currentContact = contacts.get(i);
+            System.out.println(currentContact.toString());
             System.out.println();
         }
-        */
-
     }
 
     public void saveToFile() throws IOException {

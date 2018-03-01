@@ -26,6 +26,10 @@ public class AddressBookContact {
         this.email = email;
     }
 
-
-
+    @Override
+    public String toString() {
+        return (index + "\n" + firstName + "\n" + lastName  + "\n"+ houseNumberAndStreet  + "\n"+ cityName  + "\n"+
+                province  + "\n"+ postalCode  + "\n"+ phoneNumber  + "\n"+ email);
+    }
 }
+
