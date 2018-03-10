@@ -26,10 +26,53 @@ public class AddressBookContact {
         this.email = email;
     }
 
+    public String toStringForDisplay() {
+        return (firstName + "\n" + lastName + "\n" + houseNumberAndStreet + "\n" + cityName + "\n" +
+                province + "\n" + postalCode + "\n" + phoneNumber + "\n" + email);
+    }
+
     @Override
     public String toString() {
-        return (index + "\n" + firstName + "\n" + lastName  + "\n"+ houseNumberAndStreet  + "\n"+ cityName  + "\n"+
-                province  + "\n"+ postalCode  + "\n"+ phoneNumber  + "\n"+ email);
+        return (firstName + "," + lastName + "," + houseNumberAndStreet + "," + cityName + "," +
+                province + "," + postalCode + "," + phoneNumber + "," + email);
     }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String newFirstName) {
+        this.firstName = newFirstName;
+    }
+
+    public void setLastName(String newLastName) {
+        this.lastName = newLastName;
+    }
+
+    public void setHouseNumberAndStreet(String newHouseNumberAndStreet) {
+        this.houseNumberAndStreet = newHouseNumberAndStreet;
+    }
+
+    public void setCityName(String newCityName) {
+        this.cityName = newCityName;
+    }
+
+    public void setProvince(String newProvince) {
+        this.province = newProvince;
+    }
+
+    public void setPostalCode(String newPostalCode) {
+        this.postalCode = newPostalCode;
+    }
+
+    public void setPhoneNumber(long newPhoneNumber) {
+        this.phoneNumber = newPhoneNumber;
+    }
+
+    public void setEmail(String newEmail) {
+        this.email = newEmail;
+    }
+
+
 }
 

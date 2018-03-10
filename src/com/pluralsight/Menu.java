@@ -46,28 +46,42 @@ public class Menu {
     public void performUserOption(int userOption) throws Exception {
 
         switch (userOption) {
+            //Option 1 = load from file
             case 1:
-                addressBook.clearContacts();
-                addressBook.loadContactsFromFile();
-                addressBook.displayContacts();
+                if (addressBook.getFileRead()){
+                    System.out.println("Your contacts have already been loaded from the address book.");
+                }
+                else {
+                    addressBook.loadContactsFromFile();
+                    System.out.println("Contacts successfully loaded");
+                }
                 break;
+            //Option 2 = save to file
             case 2:
                 addressBook.saveToFile();
+                System.out.println("Contacts successfully saved");
                 break;
+            //Option 3 = add an entry
             case 3:
                 addressBook.addContact();
+                System.out.println("Contact successfully added");
                 break;
+            //Option 4 = remove an entry
             case 4:
-                //removeAnEntry();
+                addressBook.removeContact();
                 break;
+            //Option 5 = edit an entry
             case 5:
-                //editAnEntry();
+                addressBook.editContact();
                 break;
+            //Option 6 = sort the address book
             case 6:
                 //addressBook.sortTheAddressBook();
                 break;
+            //Option 7 = search for an entry
             case 7:
                 //searchForAnEntry();
+                //addressBook.displayContacts();
                 break;
             case 8:
                 break;
@@ -76,5 +90,4 @@ public class Menu {
                 break;
         }
     }
-
 }
