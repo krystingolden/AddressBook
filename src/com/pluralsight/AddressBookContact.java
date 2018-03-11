@@ -27,8 +27,8 @@ public class AddressBookContact {
     }
 
     public String toStringForDisplay() {
-        return (firstName + "\n" + lastName + "\n" + houseNumberAndStreet + "\n" + cityName + "\n" +
-                province + "\n" + postalCode + "\n" + phoneNumber + "\n" + email);
+        return (firstName + " " + lastName + " " + houseNumberAndStreet + " " + cityName + " " +
+                province + " " + postalCode + " " + phoneNumber + " " + email);
     }
 
     @Override
@@ -39,6 +39,24 @@ public class AddressBookContact {
 
     public String getFirstName() {
         return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getCityName() {
+        return cityName;
+    }
+
+    public String getProvince() {
+        return province;
+    }
+
+    public int getAreaCode() {
+        String tempNumber = String.valueOf(phoneNumber);
+        //System.out.println(tempNumber.substring(0,3));
+        return Integer.parseInt(tempNumber.substring(0,3));
     }
 
     public void setFirstName(String newFirstName) {

@@ -76,12 +76,14 @@ public class Menu {
                 break;
             //Option 6 = sort the address book
             case 6:
-                //addressBook.sortTheAddressBook();
+                System.out.println("These are the contacts before being sorted");
+                addressBook.displayContacts();
+                addressBook.sortTheAddressBook();
+                addressBook.displayContacts();
                 break;
             //Option 7 = search for an entry
             case 7:
-                //searchForAnEntry();
-                //addressBook.displayContacts();
+                addressBook.searchForAContact();
                 break;
             case 8:
                 break;

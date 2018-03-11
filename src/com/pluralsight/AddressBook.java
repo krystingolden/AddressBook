@@ -5,9 +5,7 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.InputMismatchException;
-import java.util.Scanner;
+import java.util.*;
 
 public class AddressBook {
 
@@ -140,43 +138,43 @@ public class AddressBook {
         for (int i = 0; i < contacts.size(); i++) {
             AddressBookContact currentContact = contacts.get(i);
             String firstName = currentContact.getFirstName();
-            if (tempName.equalsIgnoreCase(firstName)){
+            if (tempName.equalsIgnoreCase(firstName)) {
                 matchFound = true;
                 System.out.println(currentContact.toStringForDisplay());
                 System.out.println("Do you want to remove this contact? Enter Y or N.");
                 String userAnswer = keyboard.next();
-                while(!(userAnswer.equalsIgnoreCase("Y") || userAnswer.equalsIgnoreCase("N"))){
+                while (!(userAnswer.equalsIgnoreCase("Y") || userAnswer.equalsIgnoreCase("N"))) {
                     System.out.println("Invalid entry. Try again");
                     userAnswer = keyboard.next();
                 }
-                if(userAnswer.equalsIgnoreCase("Y")){
+                if (userAnswer.equalsIgnoreCase("Y")) {
                     contacts.remove(currentContact);
                     System.out.println("Contact successfully removed.");
                 }
             }
         }
-        if(!matchFound){
+        if (!matchFound) {
             System.out.println("There are no contacts with that first name.");
         }
     }
 
-    public void editContact() throws Exception{
+    public void editContact() throws Exception {
         boolean matchFound = false;
         System.out.println("What is the first name of the contact you'd like to edit?");
         String tempName = keyboard.next();
         for (int i = 0; i < contacts.size(); i++) {
             AddressBookContact currentContact = contacts.get(i);
             String firstName = currentContact.getFirstName();
-            if (tempName.equalsIgnoreCase(firstName)){
+            if (tempName.equalsIgnoreCase(firstName)) {
                 matchFound = true;
                 System.out.println(currentContact.toStringForDisplay());
                 System.out.println("Do you want to edit this contact? Enter Y or N.");
                 String userAnswer = keyboard.next();
-                while(!(userAnswer.equalsIgnoreCase("Y") || userAnswer.equalsIgnoreCase("N"))){
+                while (!(userAnswer.equalsIgnoreCase("Y") || userAnswer.equalsIgnoreCase("N"))) {
                     System.out.println("Invalid entry. Try again");
                     userAnswer = keyboard.next();
                 }
-                if(userAnswer.equalsIgnoreCase("Y")){
+                if (userAnswer.equalsIgnoreCase("Y")) {
                     //Display the edit menu to the user
                     displayEditMenu();
 
@@ -215,7 +213,7 @@ public class AddressBook {
                             currentContact.setProvince(province);
                             currentContact.setPostalCode(postalCode);
                             break;
-                        //Option 7 = edit phone number
+                        //Option 4 = edit phone number
                         case 4:
                             //Prompt the user for the contact's phone number, verify it and reset it
                             long phoneNumber;
@@ -228,7 +226,7 @@ public class AddressBook {
                             } while (phoneNumber == 0);
                             currentContact.setPhoneNumber(phoneNumber);
                             break;
-                        //Option 8 = edit email
+                        //Option 5 = edit email
                         case 5:
                             System.out.println("What is the edited email?");
                             String newEmail = keyboard.next();
@@ -242,7 +240,7 @@ public class AddressBook {
                 }
             }
         }
-        if(!matchFound){
+        if (!matchFound) {
             System.out.println("There are no contacts with that first name.");
         }
     }
@@ -279,19 +277,69 @@ public class AddressBook {
         } while (true);
         return choice;
     }
-    /*
-    public void sortTheAddressBook () {
 
-        Collections.sort(entries);
+    public void sortTheAddressBook() throws Exception {
 
-        for(AddressBookContact str: entries){
-            System.out.println(str);
+        displaySortMenu();
+
+        int userOption = getUserOption();
+
+        //Sort the contacts based on the detail that corresponds with the users option
+        switch (userOption) {
+            //Option 1 = sort by first name
+            case 1:
+                Collections.sort(contacts, Comparator.comparing(AddressBookContact::getFirstName));
+                break;
+            //Option 2 = sort by last name
+            case 2:
+                Collections.sort(contacts, Comparator.comparing(AddressBookContact::getLastName));
+                break;
+            //Option 3 = sort by city name
+            case 3:
+                Collections.sort(contacts, Comparator.comparing(AddressBookContact::getCityName));
+                break;
+            //Option 4 = sort by province
+            case 4:
+                Collections.sort(contacts, Comparator.comparing(AddressBookContact::getProvince));
+                break;
+            //Option 5 = sort by area code
+            case 5:
+                Collections.sort(contacts, Comparator.comparing(AddressBookContact::getAreaCode));
+                break;
+            default:
+                System.out.println("An error occurred");
+                break;
+        }
+        System.out.println("Contacts successfully sorted.");
+    }
+
+    public void displaySortMenu() {
+        System.out.println();
+        System.out.println("1) By First Name");
+        System.out.println("2) By Last Name");
+        System.out.println("3) By City");
+        System.out.println("4) By Province");
+        System.out.println("5) By Area Code");
+        System.out.println();
+        System.out.println("Please choose how the contacts should be sorted:");
+    }
+
+
+    public void searchForAContact() {
+        boolean matchFound = false;
+        System.out.println("What is the first name of the contact you'd like to see?");
+        String tempName = keyboard.next();
+        for (int i = 0; i < contacts.size(); i++) {
+            AddressBookContact currentContact = contacts.get(i);
+            String firstName = currentContact.getFirstName();
+            if (tempName.equalsIgnoreCase(firstName)) {
+                matchFound = true;
+                System.out.println(currentContact.toStringForDisplay());
+            }
+        }
+        if (!matchFound) {
+            System.out.println("There are no contacts with that first name.");
         }
     }
-    */
 
-    //Empty the arraylist of contacts in preparation to fill it
-    public void clearContacts() {
-        contacts.clear();
-    }
 }
